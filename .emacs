@@ -30,3 +30,6 @@
 
 ;; force header files to be c++
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+;; force cuda files to be c++
+(add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
