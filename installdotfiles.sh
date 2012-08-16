@@ -6,7 +6,12 @@
 # variables
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc bash_aliases.d bash_completion.d bash_functions.d emacs emacs.d"# list of files/folders to symlink in homedir
+files="bashrc bash_aliases.d bash_completion.d bash_functions.d emacs emacs.d" # list of files/folders to symlink in homedir
+
+if [ ! -d "$dir" ]; then
+    echo "git repository not found at $dir"
+    exit 1
+fi
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
