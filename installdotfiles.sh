@@ -6,7 +6,7 @@
 # variables
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc bash_aliases.d bash_completion.d bash_functions.d emacs emacs.d" # list of files/folders to symlink in homedir
+files="bash_profile bashrc bash_aliases.d bash_completion.d bash_functions.d emacs emacs.d" # list of files/folders to symlink in homedir
 
 if [ ! -d "$dir" ]; then
     echo "git repository not found at $dir"
