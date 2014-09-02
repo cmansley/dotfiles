@@ -1,0 +1,7 @@
+[ui]
+username = Chris Mansley <chris.mansley@us.bosch.com>
+editor = emacs
+
+[extensions]
+color = 
+prompt = ~/.hgext/hg-prompt/prompt.py
