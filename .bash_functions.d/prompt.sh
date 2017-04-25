@@ -29,9 +29,23 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+GIT_PS1_SHOWDIRTYSTATE=yes
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[1;31m\]$(hg_ps1)\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[1;31m\]$(__git_ps1 "[%s]")\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(hg_ps1)\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 "[%s]")\$ '
 fi
 unset color_prompt force_color_prompt
+
+# Function to log history across all terminals
+log_bash_persistent_history() {
+  local command_part="$(fc -ln -0)"
+  if [ "$command_part" != "$PERSISTENT_HISTORY_LAST" ]
+  then
+    echo "$command_part" >> ~/.persistent_history
+    export PERSISTENT_HISTORY_LAST="$command_part"
+  fi
+}
+
+# Force history on prompt command
+PROMPT_COMMAND="log_bash_persistent_history"
